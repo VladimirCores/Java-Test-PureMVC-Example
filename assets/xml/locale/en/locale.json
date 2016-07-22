@@ -1,0 +1,9 @@
+{
+   "windows" : 
+	{
+      "main" : {
+         "btnSetUserName" : "Update User Name",
+		 "lblUserName": "Current User Name: "
+      }
+   }
+}
