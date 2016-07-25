@@ -21,6 +21,7 @@ public class ApplicationMediator extends Mediator {
 	public String[] listNotificationInterests() {
 		return new String[]{
 			ApplicationNotifications.SHOW_DIALOG_MESSAGE
+		,	ApplicationNotifications.APPLICATION_CLOSED	
 		};
 	}
 	
@@ -28,9 +29,16 @@ public class ApplicationMediator extends Mediator {
 	public void handleNotification(INotification notification) {
 		switch (notification.getName()) {
 			case ApplicationNotifications.SHOW_DIALOG_MESSAGE:
-				System.out.println(notification.getBody());
-				JOptionPane.showMessageDialog(null, notification.getBody());
+				ShowSystemMessageDialog((String)notification.getBody());
+			break;
+			case ApplicationNotifications.APPLICATION_CLOSED:
+				System.out.println("---> Application Closed from ApplicationMediator");
 			break;
 		}
+	}
+	
+	private void ShowSystemMessageDialog(String message) 
+	{
+		JOptionPane.showMessageDialog(null, message);
 	}
 }

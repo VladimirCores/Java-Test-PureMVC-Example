@@ -15,4 +15,8 @@ public class UserProxy extends Proxy {
 	public void setUserName(String value) {
 		((UserVO)data).name = value;
 	}
+	
+	public String getUserName() {
+		return ((UserVO)data).name;
+	}
 }

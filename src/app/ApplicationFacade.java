@@ -18,8 +18,8 @@ public class ApplicationFacade extends Facade {
 		this.registerCommand( ApplicationCommands.READY, 	new ReadyCommand() 		);
 	}
 
-	public void startup(Object app) {
-		// TODO Auto-generated method stub
+	public void startup(Object app) 
+	{
 		this.sendNotification( ApplicationCommands.STARTUP, app );
 	}
 }

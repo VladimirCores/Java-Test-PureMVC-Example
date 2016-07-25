@@ -25,7 +25,8 @@ public class LocalizeWindowComponentsCommand extends SimpleCommand {
 		String tempText;
 		for (Component component : mainWindowComponents) {
 			tempText = localeForMainWindow.get(component.getName());
-			System.out.println("Component:" + component.getName() + " | " + tempText);
+			//System.out.println("Component:" + component.getName() + " | " + tempText);
+			if(tempText == null) continue; 
 			if(component instanceof JButton) {
 				tempBtn = (JButton)component;
 				tempBtn.setText(tempText);

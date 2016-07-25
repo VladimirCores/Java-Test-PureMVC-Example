@@ -3,8 +3,9 @@ package consts;
 public class Languages {
 
 	static public final String
-		EN 				= "en"
-	,	CZ 				= "cz"	
+		EN 				= "En"
+	,	CZ 				= "Cz"	
+	,	RU 				= "Ru"	
 	,	DEFAULT = EN
 	;
 }

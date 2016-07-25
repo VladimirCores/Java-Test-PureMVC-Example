@@ -1,35 +1,26 @@
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-
-import org.puremvc.java.patterns.observer.Notification;
-
 import app.ApplicationFacade;
-import app.controller.StartupCommand;
-import app.controller.commands.ReadyCommand;
-import consts.commands.ApplicationCommands;
+import consts.notifications.ApplicationNotifications;
 
-import javax.swing.JLabel;
+public class Application implements Runnable {
 
-public class Application {
-	
-	Application app;
-	
+	private static final ApplicationFacade shell = new ApplicationFacade();
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Application());
+	}
+	
+	public void run() 
+	{
+		shell.startup(this);
+		
+		Runtime.getRuntime().addShutdownHook(new Thread() {
 			public void run() {
-				try {
-					new ApplicationFacade().startup(new Application());
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				shell.sendNotification(ApplicationNotifications.APPLICATION_CLOSED);
 			}
 		});
 	}

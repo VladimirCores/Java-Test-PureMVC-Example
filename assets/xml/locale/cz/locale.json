@@ -1,0 +1,9 @@
+{
+   "windows" : 
+	{
+      "main" : {
+         "btnSetUserName" : "Aktualizace Uživatel",
+		 "lblUserName": "Aktuální Uživatelské jméno: "
+      }
+   }
+}

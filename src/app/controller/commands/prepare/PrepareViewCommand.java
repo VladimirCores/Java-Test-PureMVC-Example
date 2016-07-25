@@ -1,12 +1,13 @@
 package app.controller.commands.prepare;
 
+import javax.swing.JFrame;
+
 import org.puremvc.java.interfaces.INotification;
 import org.puremvc.java.patterns.command.SimpleCommand;
 
 import app.view.ApplicationMediator;
 import app.view.components.MainWindow;
 import app.view.mediators.MainWindowMediator;
-import consts.commands.LocalizationCommands;
 
 public class PrepareViewCommand extends SimpleCommand {
 
@@ -21,10 +22,9 @@ public class PrepareViewCommand extends SimpleCommand {
 		MainWindow mainWindow = new MainWindow();
 		Object application = notification.getBody();
 		
-		this.sendNotification(LocalizationCommands.LOCALIZE_WINDOW_COMPONENTS, mainWindow.getContentPane().getComponents(), mainWindow.getName());
+		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		facade.registerMediator(new ApplicationMediator(application));
 		facade.registerMediator(new MainWindowMediator(mainWindow));
 	}
-
 }

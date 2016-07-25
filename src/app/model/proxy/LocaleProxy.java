@@ -13,7 +13,7 @@ public class LocaleProxy extends Proxy {
 
 	static public String NAME = "LocaleProxy";
 	
-	String[] path = new String[] {"assets", "xml", "locale", "lang", "locale.json"};
+	private String[] path = new String[] {"assets", "xml", "locale", "lang", "locale.json"};
 	
 	private LocalizationService _localeServis = LocalizationService.getInstance();
 	
@@ -36,6 +36,10 @@ public class LocaleProxy extends Proxy {
 	public Map<String, String> getItemsLocalizationForWindow(String name) {
 		LocaleVO locale = (LocaleVO) this.data; 
 		return locale.windows.get(name);
+	}
+	
+	public String getCurrentLanguage() {
+		return path[3];
 	}
 	
 }

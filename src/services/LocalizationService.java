@@ -1,6 +1,8 @@
 package services;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -18,7 +20,7 @@ public class LocalizationService {
 	private JsonReader loadFile(String path) throws Exception
 	{
 		System.out.println("Loading Locale from: " + path);
-		return new JsonReader(new FileReader(path));
+		return new JsonReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8));
 	}
 
 }

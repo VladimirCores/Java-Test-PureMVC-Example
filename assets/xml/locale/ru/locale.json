@@ -1,0 +1,8 @@
+{
+   "windows" : {
+      "main" : {
+         "btnSetUserName" : "Обновить имя",
+         "lblUserName" : "Имя пользователя: "
+      }
+   }
+}
