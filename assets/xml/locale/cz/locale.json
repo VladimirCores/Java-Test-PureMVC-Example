@@ -3,7 +3,16 @@
 	{
       "main" : {
          "btnSetUserName" : "Aktualizace Uživatel",
-		 "lblUserName": "Aktuální Uživatelské jméno: "
+		 "lblUserName": "Aktuální Uživatelské jméno: ",
+		 "btnOpenHistory" : "Otevření uživatelské příběh"
+      },
+      "history": {
+      	"lblHistoryOfUser" : "ADSDASD"
       }
-   }
+   },
+	"strings" : {
+		"user_name_is_empty": "Uživatelské jméno je prázdné a nemůže být změněno",
+		"user_name_change_failed": "Změnit uživatelské jméno se nezdařilo",
+		"user_name_change_success": "Změna Uživatelské jméno je úspěch"
+	}
 }

@@ -3,6 +3,7 @@ package app.controller.commands.prepare;
 import org.puremvc.java.interfaces.INotification;
 import org.puremvc.java.patterns.command.SimpleCommand;
 
+import app.model.proxy.DatabaseProxy;
 import app.model.proxy.LocaleProxy;
 import app.model.proxy.UserProxy;
 
@@ -18,7 +19,7 @@ public class PrepareModelCommand extends SimpleCommand {
 		
 		facade.registerProxy(new UserProxy());
 		facade.registerProxy(new LocaleProxy());
-
+		facade.registerProxy(new DatabaseProxy());
 		
 		
 	}

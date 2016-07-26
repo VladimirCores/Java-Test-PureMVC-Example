@@ -9,6 +9,7 @@ import org.puremvc.java.patterns.mediator.Mediator;
 import app.view.components.MainWindow;
 import consts.commands.LocalizationCommands;
 import consts.commands.UserCommands;
+import consts.commands.WindowCommands;
 import consts.notifications.CommonNotification;
 import consts.notifications.MainWindowNotifications;
 
@@ -23,10 +24,6 @@ public class MainWindowMediator extends Mediator implements ActionListener {
 		main = (MainWindow) this.viewComponent;
 		// TODO Auto-generated constructor stub
 	}
-	
-//	public void windowClose(WindowEvent e) {
-//		
-//	}
 	
 	@Override
 	public String[] listNotificationInterests() {
@@ -61,6 +58,7 @@ public class MainWindowMediator extends Mediator implements ActionListener {
 	@Override
 	public void onRegister() {
 		main.btnSetUserName.addActionListener(this);
+		main.btnOpenHistory.addActionListener(this);
 		main.btnLngCz.addActionListener(this);
 		main.btnLngEn.addActionListener(this);
 		main.btnLngRu.addActionListener(this);
@@ -68,12 +66,17 @@ public class MainWindowMediator extends Mediator implements ActionListener {
 	
 	public void actionPerformed(ActionEvent evt) {
 		Object source = evt.getSource(); 
-		if(source == main.btnSetUserName) {
+		if(source == main.btnSetUserName) 
+		{
 			main.btnSetUserName.setEnabled(false);
 			this.sendNotification( 
 				UserCommands.SET_NAME
 			, 	main.tfUserName.getText() 
 			);
+		}
+		else if(source == main.btnOpenHistory) 
+		{
+			this.sendNotification( WindowCommands.CREATE_HISTORY_WINDOW );
 		}
 		else if(
 				source == main.btnLngCz 

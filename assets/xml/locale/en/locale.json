@@ -3,7 +3,16 @@
 	{
       "main" : {
          "btnSetUserName" : "Update User Name",
-		 "lblUserName": "Current User Name: "
+		 "lblUserName": "Current User Name: ",
+		 "btnOpenHistory": "Open User History"
+      },
+      "history": {
+      	"lblHistoryOfUser" : "History of user names"
       }
-   }
+   },
+	"strings" : {
+		"user_name_is_empty": "User name is empty and can't be changed",
+		"user_name_change_failed": "Change User name is failed",
+		"user_name_change_success": "Change User name is success"
+	}
 }

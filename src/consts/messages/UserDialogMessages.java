@@ -3,9 +3,9 @@ package consts.messages;
 public class UserDialogMessages {
 
 	static final public String
-		NAME_CHANGED_SUCCESS 	= "Change user name is success"
-	,	NAME_CHANGED_FAILED 	= "Change User name is failed"
-	,	NAME_IS_EMPTY 			= "User name is empty and can't be changed"
+		NAME_CHANGED_SUCCESS 	= "user_name_change_success"
+	,	NAME_CHANGED_FAILED 	= "user_name_change_failed"
+	,	NAME_IS_EMPTY 			= "user_name_is_empty"
 	;
 
 }

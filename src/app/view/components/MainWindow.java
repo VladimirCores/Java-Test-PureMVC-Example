@@ -15,6 +15,8 @@ public class MainWindow extends JFrame
 	
 	public JButton 
 		btnSetUserName
+	,	btnOpenHistory
+
 	,	btnLngEn
 	,	btnLngCz
 	,	btnLngRu
@@ -26,20 +28,15 @@ public class MainWindow extends JFrame
 	
 	private JButton _activeLanguageButton;
 	
-	private String _name = "main";
-	
 	public MainWindow() {
-		initialize();
+		Initialize();
 	}
 	
-	public String getName(){ return _name; }
-	
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	private void Initialize() {
 		
-		this.setBounds(100, 100, 248, 213);
+		setName("main");
+		
+		this.setBounds(100, 100, 248, 272);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		
@@ -79,6 +76,11 @@ public class MainWindow extends JFrame
 		lngButtons.put(btnLngCz.getName(), btnLngCz);
 		lngButtons.put(btnLngEn.getName(), btnLngEn);
 		lngButtons.put(btnLngRu.getName(), btnLngRu);
+		
+		btnOpenHistory = new JButton("Open History Window");
+		btnOpenHistory.setName("btnOpenHistory");
+		btnOpenHistory.setBounds(10, 187, 206, 36);
+		getContentPane().add(btnOpenHistory);
 	}
 	
 	public void updateUserName(String value) {

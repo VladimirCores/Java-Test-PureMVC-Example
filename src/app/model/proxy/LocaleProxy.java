@@ -42,4 +42,9 @@ public class LocaleProxy extends Proxy {
 		return path[3];
 	}
 	
+	public String getString(String id) {
+		LocaleVO locale = (LocaleVO) this.data; 
+		return locale.strings.get(id);
+	}
+	
 }

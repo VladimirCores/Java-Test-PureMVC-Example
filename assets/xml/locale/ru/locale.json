@@ -1,8 +1,17 @@
 {
    "windows" : {
       "main" : {
-         "btnSetUserName" : "Обновить имя",
-         "lblUserName" : "Имя пользователя: "
+         "btnSetUserName" : "Обновить имя пользователя",
+         "lblUserName" : "Текущее имя пользователя: ",
+		 "btnOpenHistory": "Открыть историю пользователя"
+      },
+      "history": {
+      	"lblHistoryOfUser" : "История изменения имени пользователя"
       }
-   }
+   },
+	"strings" : {
+		"user_name_is_empty": "Невозможно установить пустое имя!",
+		"user_name_change_failed": "Ошибка. Сохранение имени пользователя не возможно.",
+		"user_name_change_success": "Обновление и сохранение успешно!"
+	}
 }
