@@ -26,13 +26,20 @@ public class HistoryWindowMediator extends Mediator {
 	public String[] listNotificationInterests() {
 		return new String[]{
 			MainWindowNotifications.USER_NAME_UPDATED	
-		,	CommonNotification.LANGUAGE_CHANGED	
+		,	HistoryWindowNotifications.SET_HISTORY_DATA
+		,	CommonNotification.LANGUAGE_CHANGED
 		};
 	}
 	
 	@Override
 	public void handleNotification(INotification notification) {
 		switch (notification.getName()) {
+			case HistoryWindowNotifications.SET_HISTORY_DATA:
+				for( Object item : notification.getBody() ) {
+					UserNameVO userNameVO = (UserNameVO) item;
+					historyWindow.appendNameAndDate(userNameVO.value, userNameVO.date);
+				}
+			break;
 			case MainWindowNotifications.USER_NAME_UPDATED:
 				history.appendName((String)notification.getBody());
 			break;

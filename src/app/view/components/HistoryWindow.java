@@ -15,6 +15,7 @@ public class HistoryWindow extends JFrame {
 	private static final long serialVersionUID = 2L;
 
 	public JList listHistory;
+	private DefaultListModel<String> _model;
 	
 	public HistoryWindow() {
 		Initialize();
@@ -32,22 +33,19 @@ public class HistoryWindow extends JFrame {
 		lblHistoryOfUser.setBounds(10, 11, 239, 14);
 		getContentPane().add(lblHistoryOfUser);
 		
+		_model = new DefaultListModel<String>();
+		listHistory.setModel(_model);
+
 		listHistory = new JList();
 		listHistory.setBounds(10, 50, 212, 173);
 		getContentPane().add(listHistory);
 	}
-	
-	public void setHistoryData(ArrayList<Object> data) {
-		DefaultListModel<String> model = new DefaultListModel<String>();
-		for(Object item : data) {
-			UserNameVO userNameVO = (UserNameVO) item;
-			model.addElement(new Date(userNameVO.date).toLocaleString() + " - " + userNameVO.value);
-		}
-		listHistory.setModel(model);
+		
+	public void appendNameAndDate(String name, long date) {
+		_model.addElement(new Date(date).toLocaleString() + " - " + name);
 	}
-	
+
 	public void appendName(String value) {
-		DefaultListModel<String> model = (DefaultListModel<String>) listHistory.getModel();
-		model.addElement(new Date().toLocaleString() + " - " + value);
+		_model.addElement(new Date().toLocaleString() + " - " + value);
 	}
 }

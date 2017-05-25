@@ -10,18 +10,35 @@ import app.view.components.HistoryWindow;
 import app.view.mediators.HistoryWindowMediator;
 import consts.commands.LocalizationCommands;
 
-public class CreateHistoryWindowCommand extends SimpleCommand {
-
+public class CreateHistoryWindowCommand extends SimpleCommand 
+{
 	public void execute( INotification notification ) 
 	{
-		DatabaseProxy databaseProxy = (DatabaseProxy) facade.retrieveProxy(DatabaseProxy.NAME);
+		DatabaseProxy databaseProxy = (DatabaseProxy) facade.retrieveProxy( DatabaseProxy.NAME );
 		
 		HistoryWindow historyWindow = new HistoryWindow();
-		facade.registerMediator(new HistoryWindowMediator(historyWindow));
+		facade.registerMediator( new HistoryWindowMediator( historyWindow ));
 		
-		this.sendNotification(LocalizationCommands.LOCALIZE_WINDOW_COMPONENTS, historyWindow.getContentPane().getComponents(), historyWindow.getName());
+		this.sendNotification( 
+			LocalizationCommands.LOCALIZE_WINDOW_COMPONENTS, 
+			historyWindow.getContentPane().getComponents(), 
+			historyWindow.getName()
+		);
 		
-		historyWindow.setHistoryData(databaseProxy.getHistoryOfNames());
+		this.sendNotification( 
+			HistoryWindowNotifications.SET_HISTORY_DATA, 
+			databaseProxy.getHistoryOfNames() 
+		);
+
+		/*	 
+			for(Object item : databaseProxy.getHistoryOfNames()) {
+				UserNameVO userNameVO = (UserNameVO) item;
+				historyWindow.appendNameAndDate(userNameVO.value, userNameVO.date);
+			}
+		*/
+
 		historyWindow.setVisible(true);
 	}
 }
+
+

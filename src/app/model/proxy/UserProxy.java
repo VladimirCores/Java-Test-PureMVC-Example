@@ -4,8 +4,8 @@ import org.puremvc.java.patterns.proxy.Proxy;
 
 import app.model.vo.UserVO;
 
-public class UserProxy extends Proxy {
-
+public class UserProxy extends Proxy 
+{
 	static public String NAME = "UserProxy";
 	
 	public UserProxy() {
@@ -13,23 +13,20 @@ public class UserProxy extends Proxy {
 	}
 	
 	public void setUserName(String value) {
-		((UserVO)data).name = value;
-		((UserVO)data).id++;
+		user.name = value;
+		user.id++;
 	}
 	
-	public String getUserName() {
-		return ((UserVO)data).name;
-	}
+	public String getUserName() { return user.name; }
+	public int getUserID() { return user.id; }
 	
-	public int getUserID() {
-		return ((UserVO)data).id;
-	}
-	
-	public UserVO defaultUser() {
+	public UserVO createDefaultUser() {
 		UserVO result = new UserVO();
 		result.name = "Default";
 		result.age = 21;
 		result.id = 0;
 		return result;
 	}
+
+	private UserVO user() { return (UserVO)data; }
 }

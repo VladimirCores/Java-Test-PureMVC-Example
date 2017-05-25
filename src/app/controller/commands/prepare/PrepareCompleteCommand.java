@@ -24,7 +24,7 @@ public class PrepareCompleteCommand extends SimpleCommand {
 		UserVO user = databaseProxy.retrieveUser();
 		
 		if(user == null) {
-			user = userProxy.defaultUser();
+			user = userProxy.createDefaultUser();
 			databaseProxy.saveUser(user);
 		}
 		

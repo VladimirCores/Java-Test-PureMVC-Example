@@ -13,23 +13,26 @@ import consts.commands.WindowCommands;
 import consts.notifications.CommonNotification;
 import consts.notifications.MainWindowNotifications;
 
-public class MainWindowMediator extends Mediator implements ActionListener {
-
+public class MainWindowMediator extends Mediator implements ActionListener 
+{
 	static public String NAME = "MainScreenMediator";
-	
+
 	private MainWindow main;
 	
 	public MainWindowMediator(Object viewComponent) {
 		super(NAME, viewComponent);
 		main = (MainWindow) this.viewComponent;
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public String[] listNotificationInterests() {
-		return new String[]{
+		return new String[] {
 			MainWindowNotifications.SHOW_WINDOW
-		,	MainWindowNotifications.USER_NAME_UPDATED	
+		,	MainWindowNotifications.USER_NAME_UPDATED
+		
+		,	DatabaseNotifications.USER_SAVE_SUCCESS	
+		,	DatabaseNotifications.USER_SAVE_FAILURE	
+		
 		,	CommonNotification.LANGUAGE_CHANGED	
 		};
 	}
@@ -41,18 +44,20 @@ public class MainWindowMediator extends Mediator implements ActionListener {
 				main.btnSetUserName.setEnabled(true);
 				main.updateUserName((String) notification.getBody());
 			break;
-			case MainWindowNotifications.SHOW_WINDOW:
-				main.setVisible(true);
-			break;
-			case CommonNotification.LANGUAGE_CHANGED:
-				UpdateLanguage((String)notification.getBody());
-			break;
+			case DatabaseNotifications.USER_SAVE_SUCCESS: main.highlightSaveSuccess(); break;
+			case DatabaseNotifications.USER_SAVE_FAILURE: main.highlightSaveFailure(); break;
+			case MainWindowNotifications.SHOW_WINDOW: main.setVisible(true); break;
+			case CommonNotification.LANGUAGE_CHANGED: UpdateLanguage((String)notification.getBody()); break;
 		}
 	}
 	
 	private void UpdateLanguage(String lng) {
 		main.setLanguageButton(lng);
-		this.sendNotification(LocalizationCommands.LOCALIZE_WINDOW_COMPONENTS, main.getContentPane().getComponents(), main.getName());
+		this.sendNotification(
+			LocalizationCommands.LOCALIZE_WINDOW_COMPONENTS, 
+			main.getContentPane().getComponents(), 
+			main.getName()
+		);
 	}
 	
 	@Override
@@ -66,18 +71,15 @@ public class MainWindowMediator extends Mediator implements ActionListener {
 	
 	public void actionPerformed(ActionEvent evt) {
 		Object source = evt.getSource(); 
-		if(source == main.btnSetUserName) 
+		if( source == main.btnSetUserName ) 
 		{
 			main.btnSetUserName.setEnabled(false);
-			this.sendNotification( 
-				UserCommands.SET_NAME
-			, 	main.tfUserName.getText() 
-			);
+			this.sendNotification( UserCommands.SET_NAME, main.tfUserName.getText());
 		}
-		else if(source == main.btnOpenHistory) 
+		else if( source == main.btnOpenHistory ) 
 		{
 			this.sendNotification( WindowCommands.CREATE_HISTORY_WINDOW );
-		}
+		} 
 		else if(
 				source == main.btnLngCz 
 			|| 	source == main.btnLngEn
