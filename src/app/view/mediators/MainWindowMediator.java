@@ -11,6 +11,7 @@ import consts.commands.LocalizationCommands;
 import consts.commands.UserCommands;
 import consts.commands.WindowCommands;
 import consts.notifications.CommonNotification;
+import consts.notifications.DatabaseNotifications;
 import consts.notifications.MainWindowNotifications;
 
 public class MainWindowMediator extends Mediator implements ActionListener 
@@ -29,6 +30,8 @@ public class MainWindowMediator extends Mediator implements ActionListener
 		return new String[] {
 			MainWindowNotifications.SHOW_WINDOW
 		,	MainWindowNotifications.USER_NAME_UPDATED
+		,	MainWindowNotifications.RESTORE_USER_NAME
+		,	MainWindowNotifications.UNLOCK_HISTORY_BUTTON
 		
 		,	DatabaseNotifications.USER_SAVE_SUCCESS	
 		,	DatabaseNotifications.USER_SAVE_FAILURE	
@@ -40,9 +43,14 @@ public class MainWindowMediator extends Mediator implements ActionListener
 	@Override
 	public void handleNotification(INotification notification) {
 		switch (notification.getName()) {
+			case MainWindowNotifications.UNLOCK_HISTORY_BUTTON:
+				main.btnOpenHistory.setEnabled(true);
+			break;
+			case MainWindowNotifications.RESTORE_USER_NAME:
 			case MainWindowNotifications.USER_NAME_UPDATED:
-				main.btnSetUserName.setEnabled(true);
 				main.updateUserName((String) notification.getBody());
+				main.btnSetUserName.setEnabled(true);
+				main.clearUserNameInput();
 			break;
 			case DatabaseNotifications.USER_SAVE_SUCCESS: main.highlightSaveSuccess(); break;
 			case DatabaseNotifications.USER_SAVE_FAILURE: main.highlightSaveFailure(); break;
@@ -78,6 +86,7 @@ public class MainWindowMediator extends Mediator implements ActionListener
 		}
 		else if( source == main.btnOpenHistory ) 
 		{
+			main.btnOpenHistory.setEnabled(false);
 			this.sendNotification( WindowCommands.CREATE_HISTORY_WINDOW );
 		} 
 		else if(

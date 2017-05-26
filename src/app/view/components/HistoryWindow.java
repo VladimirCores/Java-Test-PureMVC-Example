@@ -1,6 +1,5 @@
 package app.view.components;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
@@ -8,13 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JLabel;
 
-import app.model.vo.UserNameVO;
-
 public class HistoryWindow extends JFrame {
 
 	private static final long serialVersionUID = 2L;
 
-	public JList listHistory;
+	public JList<String> listHistory;
 	private DefaultListModel<String> _model;
 	
 	public HistoryWindow() {
@@ -34,10 +31,10 @@ public class HistoryWindow extends JFrame {
 		getContentPane().add(lblHistoryOfUser);
 		
 		_model = new DefaultListModel<String>();
-		listHistory.setModel(_model);
-
-		listHistory = new JList();
+		
+		listHistory = new JList<String>();
 		listHistory.setBounds(10, 50, 212, 173);
+		listHistory.setModel(_model);
 		getContentPane().add(listHistory);
 	}
 		

@@ -2,13 +2,16 @@ package app.view.mediators;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import org.puremvc.java.interfaces.INotification;
 import org.puremvc.java.patterns.mediator.Mediator;
 
+import app.model.vo.UserNameVO;
 import app.view.components.HistoryWindow;
 import consts.commands.LocalizationCommands;
 import consts.notifications.CommonNotification;
+import consts.notifications.HistoryWindowNotifications;
 import consts.notifications.MainWindowNotifications;
 
 public class HistoryWindowMediator extends Mediator {
@@ -35,16 +38,20 @@ public class HistoryWindowMediator extends Mediator {
 	public void handleNotification(INotification notification) {
 		switch (notification.getName()) {
 			case HistoryWindowNotifications.SET_HISTORY_DATA:
-				for( Object item : notification.getBody() ) {
+				for( Object item : (ArrayList<Object>)notification.getBody() ) {
 					UserNameVO userNameVO = (UserNameVO) item;
-					historyWindow.appendNameAndDate(userNameVO.value, userNameVO.date);
+					history.appendNameAndDate(userNameVO.value, userNameVO.date);
 				}
 			break;
 			case MainWindowNotifications.USER_NAME_UPDATED:
 				history.appendName((String)notification.getBody());
 			break;
 			case CommonNotification.LANGUAGE_CHANGED:
-				this.sendNotification(LocalizationCommands.LOCALIZE_WINDOW_COMPONENTS, history.getContentPane().getComponents(), history.getName());
+				this.sendNotification(
+					LocalizationCommands.LOCALIZE_WINDOW_COMPONENTS, 
+					history.getContentPane().getComponents(), 
+					history.getName()
+				);
 			break;
 		}
 	}
@@ -59,7 +66,10 @@ public class HistoryWindowMediator extends Mediator {
 	}
 	
 	private void HandleCloseWindow() {
+		viewComponent = null;
+		this.sendNotification( MainWindowNotifications.UNLOCK_HISTORY_BUTTON );
 		this.facade.removeMediator(NAME);
+		
 	}
 
 }

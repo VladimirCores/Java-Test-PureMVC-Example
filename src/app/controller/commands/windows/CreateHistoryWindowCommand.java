@@ -9,6 +9,7 @@ import app.model.proxy.UserProxy;
 import app.view.components.HistoryWindow;
 import app.view.mediators.HistoryWindowMediator;
 import consts.commands.LocalizationCommands;
+import consts.notifications.HistoryWindowNotifications;
 
 public class CreateHistoryWindowCommand extends SimpleCommand 
 {

@@ -83,11 +83,23 @@ public class MainWindow extends JFrame
 		getContentPane().add(btnOpenHistory);
 	}
 	
+	public void highlightSaveFailure() {
+		
+	}
+	
+	public void highlightSaveSuccess() {
+		
+	}
+	
 	public void updateUserName(String value) {
 		String currentLabel = lblUserName.getText();
 		String[] splitted = currentLabel.split(":");
 		splitted[1] = value; 
 		lblUserName.setText(String.join(": ", splitted));
+	}
+	
+	public void clearUserNameInput() {
+		tfUserName.setText("");
 	}
 	
 	public void setLanguageButton(String lng) {

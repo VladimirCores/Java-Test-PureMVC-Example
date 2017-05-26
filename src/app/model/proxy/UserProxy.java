@@ -13,12 +13,12 @@ public class UserProxy extends Proxy
 	}
 	
 	public void setUserName(String value) {
-		user.name = value;
-		user.id++;
+		user().name = value;
+		user().id++;
 	}
 	
-	public String getUserName() { return user.name; }
-	public int getUserID() { return user.id; }
+	public String getUserName() { return user().name; }
+	public int getUserID() { return user().id; }
 	
 	public UserVO createDefaultUser() {
 		UserVO result = new UserVO();

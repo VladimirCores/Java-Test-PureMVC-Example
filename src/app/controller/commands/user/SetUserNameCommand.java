@@ -31,18 +31,18 @@ public class SetUserNameCommand extends SimpleCommand {
 		Boolean isNameEmpty = userName.isEmpty();
 		
 		if(isNameEmpty) {
-			message = localeProxy.getString(UserDialogMessages.NAME_IS_EMPTY);
+			message = localeProxy.getString( UserDialogMessages.NAME_IS_EMPTY );
 			userName = userProxy.getUserName();
 		} else {
-			Boolean isNameSet = new Random().nextBoolean();
-			if(isNameSet) {
+//			Boolean isNameSet = new Random().nextBoolean();
+//			if(isNameSet) {
 				userProxy.setUserName(userName);
 				databaseProxy.userNameChanged(userName, userProxy.getUserID());
-				message = localeProxy.getString(UserDialogMessages.NAME_CHANGED_SUCCESS);
-			} else {
-				userName = userProxy.getUserName();
-				message = localeProxy.getString(UserDialogMessages.NAME_CHANGED_FAILED);
-			}
+				message = localeProxy.getString( UserDialogMessages.NAME_CHANGED_SUCCESS );
+//			} else {
+//				userName = userProxy.getUserName();
+//				message = localeProxy.getString( UserDialogMessages.NAME_CHANGED_FAILED );
+//			}
 		}
 		
 		final Notifier notifier = this;
