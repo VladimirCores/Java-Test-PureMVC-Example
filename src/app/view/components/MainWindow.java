@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import utils.OSUtils;
+
 public class MainWindow extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
@@ -36,41 +38,51 @@ public class MainWindow extends JFrame
 		
 		setName("main");
 		
-		this.setBounds(100, 100, 248, 272);
+		int langButtons = 3;
+		int margin = 8;
+		int width = 296;
+		int fieldWidth = width - margin * 2;
+		int langButtonWidth = (fieldWidth - margin * (langButtons - 1)) / langButtons;
+		int langButtonHeight = 36;
+		int langBtnPositionX = margin;
+		int langBtnPositionY = 136;
+		
+		this.setBounds(100, 100, width, 264);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		
-		btnSetUserName = new JButton("Set User Name");
-		btnSetUserName.setName("btnSetUserName");
-		btnSetUserName.setBounds(10, 78, 212, 36);
-		this.getContentPane().add(btnSetUserName);
+		lblUserName = new JLabel("Current User Name: ");
+		lblUserName.setName("lblUserName");
+		lblUserName.setBounds(margin, 8, fieldWidth, 16);
+		this.getContentPane().add(lblUserName);
 		
 		tfUserName = new JTextField();
 		tfUserName.setName("tfUserName");
-		tfUserName.setToolTipText("User Name");
-		tfUserName.setBounds(10, 32, 212, 32);
+//		tfUserName.setToolTipText("User Name");
+		tfUserName.setBounds(margin, 32, fieldWidth, 36);
 		this.getContentPane().add(tfUserName);
 		tfUserName.setColumns(10);
 		
-		lblUserName = new JLabel("Current User Name: ");
-		lblUserName.setName("lblUserName");
-		lblUserName.setBounds(10, 11, 212, 14);
-		this.getContentPane().add(lblUserName);
+		btnSetUserName = new JButton("Set User Name");
+		btnSetUserName.setName("btnSetUserName");
+		btnSetUserName.setBounds(margin, 78, fieldWidth, 36);
+		this.getContentPane().add(btnSetUserName);
 		
 		btnLngEn = new JButton("En");
-		btnLngEn.setName("btnLngEn");
-		btnLngEn.setBounds(10, 141, 62, 23);
+		btnLngEn.setName("btnLngEN");
+		btnLngEn.setBounds(langBtnPositionX, langBtnPositionY, langButtonWidth, langButtonHeight);
 		getContentPane().add(btnLngEn);
-		
-		
+				
+		langBtnPositionX += langButtonWidth + margin;
 		btnLngCz = new JButton("Cz");
-		btnLngCz.setName("btnLngCz");
-		btnLngCz.setBounds(82, 141, 62, 23);
+		btnLngCz.setName("btnLngCZ");
+		btnLngCz.setBounds(langBtnPositionX, langBtnPositionY, langButtonWidth, langButtonHeight);
 		getContentPane().add(btnLngCz);
 		
+		langBtnPositionX += langButtonWidth + margin;
 		btnLngRu = new JButton("Ru");
-		btnLngRu.setName("btnLngRu");
-		btnLngRu.setBounds(154, 141, 62, 23);
+		btnLngRu.setName("btnLngRU");
+		btnLngRu.setBounds(langBtnPositionX, langBtnPositionY, langButtonWidth, langButtonHeight);
 		getContentPane().add(btnLngRu);
 		
 		lngButtons.put(btnLngCz.getName(), btnLngCz);
@@ -79,7 +91,7 @@ public class MainWindow extends JFrame
 		
 		btnOpenHistory = new JButton("Open History Window");
 		btnOpenHistory.setName("btnOpenHistory");
-		btnOpenHistory.setBounds(10, 187, 206, 36);
+		btnOpenHistory.setBounds(margin, 184, fieldWidth, 36);
 		getContentPane().add(btnOpenHistory);
 	}
 	
@@ -103,7 +115,7 @@ public class MainWindow extends JFrame
 	}
 	
 	public void setLanguageButton(String lng) {
-		String lngBtnName = "btnLng" + lng;
+		String lngBtnName = "btnLng" + lng.toUpperCase();
 		if(_activeLanguageButton != null) {
 			_activeLanguageButton.setEnabled(true);
 		}

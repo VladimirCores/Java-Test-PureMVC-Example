@@ -21,19 +21,26 @@ public class HistoryWindow extends JFrame {
 	private void Initialize() {
 		setName("history");
 
-		this.setBounds(150, 150, 248, 267);
+		int margin = 8;
+		int windowWidth = 360;
+		int windowHeight = 272;
+		int fieldWidth = windowWidth - margin * 2;
+				
+		this.setBounds(256, 240, windowWidth, windowHeight);
 		getContentPane().setLayout(null);
 		
 		JLabel lblHistoryOfUser = new JLabel("History of user names");
 		lblHistoryOfUser.setInheritsPopupMenu(false);
 		lblHistoryOfUser.setName("lblHistoryOfUser");
-		lblHistoryOfUser.setBounds(10, 11, 239, 14);
+		lblHistoryOfUser.setBounds(margin, margin, fieldWidth, 16);
 		getContentPane().add(lblHistoryOfUser);
 		
 		_model = new DefaultListModel<String>();
 		
+		int listPositionY = lblHistoryOfUser.getBounds().y + lblHistoryOfUser.getHeight() + margin;
+		int listHeight = 198;
 		listHistory = new JList<String>();
-		listHistory.setBounds(10, 50, 212, 173);
+		listHistory.setBounds(margin, listPositionY, fieldWidth, listHeight);
 		listHistory.setModel(_model);
 		getContentPane().add(listHistory);
 	}
