@@ -32,6 +32,7 @@ public class MainWindowMediator extends Mediator implements ActionListener
 		,	MainWindowNotifications.USER_NAME_UPDATED
 		,	MainWindowNotifications.RESTORE_USER_NAME
 		,	MainWindowNotifications.UNLOCK_HISTORY_BUTTON
+		,	MainWindowNotifications.UNLOCK_CHANGE_BUTTON
 		
 		,	DatabaseNotifications.USER_SAVE_SUCCESS	
 		,	DatabaseNotifications.USER_SAVE_FAILURE	
@@ -52,6 +53,7 @@ public class MainWindowMediator extends Mediator implements ActionListener
 				main.btnSetUserName.setEnabled(true);
 				main.clearUserNameInput();
 			break;
+			case MainWindowNotifications.UNLOCK_CHANGE_BUTTON: main.btnSetUserName.setEnabled(true); break;
 			case DatabaseNotifications.USER_SAVE_SUCCESS: main.highlightSaveSuccess(); break;
 			case DatabaseNotifications.USER_SAVE_FAILURE: main.highlightSaveFailure(); break;
 			case MainWindowNotifications.SHOW_WINDOW: main.setVisible(true); break;
@@ -88,7 +90,7 @@ public class MainWindowMediator extends Mediator implements ActionListener
 		{
 			main.btnOpenHistory.setEnabled(false);
 			this.sendNotification( WindowCommands.CREATE_HISTORY_WINDOW );
-		} 
+		}
 		else if(
 				source == main.btnLngCz 
 			|| 	source == main.btnLngEn

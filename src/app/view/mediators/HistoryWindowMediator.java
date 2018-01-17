@@ -38,7 +38,8 @@ public class HistoryWindowMediator extends Mediator {
 	public void handleNotification(INotification notification) {
 		switch (notification.getName()) {
 			case HistoryWindowNotifications.SET_HISTORY_DATA:
-				for( Object item : (ArrayList<Object>)notification.getBody() ) {
+				ArrayList<Object> body = (ArrayList<Object>)notification.getBody();
+				if(body != null) for( Object item : body ) {
 					UserNameVO userNameVO = (UserNameVO) item;
 					history.appendNameAndDate(userNameVO.value, userNameVO.date);
 				}

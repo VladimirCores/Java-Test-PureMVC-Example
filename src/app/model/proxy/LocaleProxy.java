@@ -27,7 +27,7 @@ public class LocaleProxy extends Proxy {
 	public void changeLanguage(String name) {
 		path[3] = name.toLowerCase();
 		try {
-			this.data = _localeServis.getLocaleForClassFromPath(String.join(OSUtils.isUnix() ? "/" : "\\", path), LocaleVO.class);
+			this.data = _localeServis.getLocaleForClassFromPath(String.join((OSUtils.isUnix() || OSUtils.isMac()) ? "/" : "\\", path), LocaleVO.class);
 			System.out.println("Load Locale Success!");
 		} catch (Exception e) {
 			this.data = null;

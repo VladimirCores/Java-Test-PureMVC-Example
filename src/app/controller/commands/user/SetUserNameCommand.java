@@ -33,6 +33,9 @@ public class SetUserNameCommand extends SimpleCommand {
 		if(isNameEmpty) {
 			message = localeProxy.getString( UserDialogMessages.NAME_IS_EMPTY );
 			userName = userProxy.getUserName();
+			sendNotification ( ApplicationNotifications.SHOW_DIALOG_MESSAGE, message );
+			sendNotification ( MainWindowNotifications.UNLOCK_CHANGE_BUTTON );
+			return;
 		} else {
 //			Boolean isNameSet = new Random().nextBoolean();
 //			if(isNameSet) {
